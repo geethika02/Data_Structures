@@ -5,6 +5,7 @@ struct node
     int vertex;
     struct node* next;
 };
+struct node* createvertex(int v);
 struct graph
 {
     int vertices;
@@ -42,11 +43,11 @@ void print(struct graph* g)
 {
  for(int i=0;i<g->vertices;i++)
  {
-     printf("%d -> ",i);
+     printf("%d ->",i);
     struct node* temp=g->adjlist[i];
     while(temp!=NULL)
     {
-        printf("%d ",temp->vertex);
+        printf(" %d ->",temp->vertex);
         temp=temp->next;
     }
     printf("\n");
@@ -59,5 +60,6 @@ int main()
    addedge(g,0,2);
    addedge(g,1,2);
    addedge(g,2,3);
+   printf("Adjacency List representation:\n");
    print(g);
 }
