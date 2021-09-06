@@ -1,52 +1,65 @@
 #include <stdio.h>
-void insert(long long int a[],long long int e,long long int n)
+void insert(int a[],int x,int s){
+for(int i=0;i<s;i++)
 {
-long long int l=e%n;
-while(a[l]!=-1 && l<n)
+int q=(x+i)%s;
+if(a[q]==-1)
 {
-	l++;
-}
-a[l]=e;
-}
-void delete(long long int a[],long long int d,long long int n){
-	int i;
-for(i=0;i<n;i++)
-{
-	if(a[i]==d){
-	a[i]=-1;
+	a[q]=x;
 	break;
+}
+}
+}
+void del(int a[],int y,int s){
+int b[s];
+for(int i=0;i<s;i++)
+{
+int q=(y+i)%s;
+if(a[q]==y)
+{
+	a[q]=-1;
+	break;
+}
+}
+int j=0;
+for(int i=0;i<s;i++)
+{
+	if(a[i]!=-1)
+	{
+		b[j++]=a[i];
+		a[i]=-1;
 	}
 }
-}
-void print(long long int a[],long long int n)
-{long long int i;
-for(i=0;i<n;i++)
-printf("%d ",a[i]);
+for(int i=0;i<j;i++)
+insert(a,b[i],s);
 }
 int main(){
-	long long int n,t,m,e,d,i;
-	scanf("%d",&n);
-	long long int a[n];
-	for(i=0;i<n;i++)
-	a[i]=-1;
+	int s,t;
+	scanf("%d", &s);
+	int a[s];
+	for(int i=0;i<s;i++)
+	a[i]=-1; 
 	scanf("%d",&t);
 	while(t--){
-	scanf("%d",&m);
-	if(m==1)
-	{
-		scanf("%d",&e);
-		insert(a,e,n);
-	}
-	else if(m==2)
-	{
-		scanf("%d",&d);
-		delete(a,d,n);
-	}	
-	else if(m==3)
-	{
-		print(a,n);
-		printf("\n");
-	}
-	}
+		int n;
+		scanf("%d",&n);
+		if(n==1)
+		{	int x;
+			scanf("%d",&x);
+			insert(a,x,s);
+		}
+		if(n==2)
+		{
+			int y;
+			scanf("%d",&y);
+			del(a,y,s);
+		}
+		if(n==3)
+		{
+			for(int i=0;i<s;i++)
+			printf("%d ",a[i]);
 
-}
+			printf("\n");
+		}
+	}
+}             	
